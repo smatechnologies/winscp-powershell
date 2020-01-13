@@ -10,12 +10,12 @@ Testing was done on WINSCP version 5.15.9 and PowerShell 5.1
 
 # Instructions
 This script contains several parameters:<br>
-  <b>localPath</b> - path to the location in your local environment <br>
-  <b>remotePath</b> - remote folder on the ftp site you connect to <br>
-  <b>hostname</b> - ftp site you are connecting to <br>
-  <b>user</b> - username used for authenticating to the ftp site <br>
-  <b>password</b> - password used for authentication to the ftp site (recommend OpCon encrypted global property) <br>
-  <b>filename</b> - name of the file you are trying to upload/download (supports wildcards) <br>
+* <b>localPath</b> - path to the location in your local environment <br>
+* <b>remotePath</b> - remote folder on the ftp site you connect to <br>
+* <b>hostname</b> - ftp site you are connecting to <br>
+* <b>user</b> - username used for authenticating to the ftp site <br>
+* <b>password</b> - password used for authentication to the ftp site (recommend OpCon encrypted global property) <br>
+* <b>filename</b> - name of the file you are trying to upload/download (supports wildcards) <br>
   
 Execution example: <br>
 ```
