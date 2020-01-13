@@ -18,8 +18,9 @@ This script contains several parameters:<br>
   <b>filename</b> - name of the file you are trying to upload/download (supports wildcards) <br>
   
 Execution example: <br>
+```
 powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -localPath "C:\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "encrypted"
-
+```
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
 
