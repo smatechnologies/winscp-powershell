@@ -1,16 +1,29 @@
-# Winscp
-This repo will contain automation scripts around the WINSCP ftp program.
+# WinSCP
+This repo contains an example of running the <a href url="https://winscp.net/eng/index.php">WINSCP</a> ftp program from a PowerShell script.
+
+The intent was to keep this version as generic as possible so it could be used for as many different sites as possible.  If you are running this from OpCon it should fail (with an Exit Code of 1) if there are any issues.  Any other pertinant logging will be in the job output.
+
+*The current iteration only supports downloading of files.  It will be updated in the future with more functionality.
+
+# Prerequisites
+Testing was done on WINSCP version 5.15.9 and PowerShell 5.1
+
+# Instructions
+This script contains several parameters:<br>
+  <b>localPath</b> - path to the location in your local environment <br>
+  <b>remotePath</b> - remote folder on the ftp site you connect to <br>
+  <b>hostname</b> - ftp site you are connecting to <br>
+  <b>user</b> - username used for authenticating to the ftp site <br>
+  <b>password</b> - password used for authentication to the ftp site (recommend OpCon encrypted global property) <br>
+  <b>filename</b> - name of the file you are trying to upload/download (supports wildcards) <br>
+  
+Execution example: <br>
+powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -localPath "C:\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "encrypted"
 
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
 
 SMA Technologies assumes no liability for damage caused by the usage of any of the files offered here via this Github repository.
-
-# Prerequisites
-
-
-# Instructions
-
 
 # License
 Copyright 2019 SMA Technologies
