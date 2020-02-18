@@ -6,7 +6,8 @@ The intent was to keep this version as generic as possible so it could be used f
 *The current iteration only supports downloading of files.  It will be updated in the future with more functionality.
 
 # Prerequisites
-Testing was done on WINSCP version 5.15.9 and PowerShell 5.1
+* WinSCP 5.15.9
+* PowerShell 5.1
 
 # Instructions
 This script contains several parameters:<br>
