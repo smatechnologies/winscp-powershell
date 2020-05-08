@@ -72,7 +72,7 @@ elseif($option -eq "download")
         $session.Open($sessionOptions)
  
         # Download the file and throw on any error
-        $sessionResult = $session.GetFiles($remotePath + $fileName),($localPath + $fileName)
+        $sessionResult = $session.GetFiles(($remotePath + $fileName),($localPath + $fileName))
         
         # Throw error if found
         $sessionResult.Check()
