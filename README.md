@@ -12,7 +12,7 @@ The intent was to keep this version as generic as possible so it could be used f
 # Instructions
 This script contains several parameters:<br>
 * <b>winscpPath</b> - Path to the WINSCP .Net dll <br>
-* <b>localPath</b> - path to the location in your local environment <br>
+* <b>localPath</b> - path to the location in your local environment (when running in OpCon you need an extra ending slash) <br>
 * <b>remotePath</b> - remote folder on the ftp site you connect to <br>
 * <b>hostname</b> - ftp site you are connecting to <br>
 * <b>user</b> - username used for authenticating to the ftp site <br>
@@ -22,7 +22,7 @@ This script contains several parameters:<br>
   
 Execution example: <br>
 ```
-powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -winscpPath "C:\Program Files (x86)\WinSCP\WinSCPnet.dll" -localPath "C:\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "encrypted" -option "download"
+powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -winscpPath "C:\Program Files (x86)\WinSCP\WinSCPnet.dll" -localPath "C:\\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "encrypted" -option "download"
 ```
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
