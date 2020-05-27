@@ -6,9 +6,29 @@
     [string] $user,
     [string] $password,
     [string] $fileName,
+    [string] $ftpmode = "Passive",
+    [string] $ftpsecure = "None",
+    [string] $protocol = "ftp",
+    [string] $transferMode = "Binary",
+    [string] $ssh,
+    [string] $recipient,
+    [switch] $encryption,
     [string] $option
 )
-         
+
+# Testing variables
+<#
+$hostname = "test.rebex.net"
+$localPath = "C:\Winscp\"
+$remotePath = "/"
+$filename = "*.txt"
+$protocol = "sftp"
+$user = "demo"
+$password = 'password'
+$option = "list"
+$ssh = ""
+#>
+
 try
 {
     # Load WinSCP .NET assembly
@@ -22,15 +42,29 @@ catch [Exception]
 
 # Setup session options
 $sessionOptions = New-Object WinSCP.SessionOptions -Property @{
-    Protocol = [WinSCP.Protocol]::ftp
+    FtpMode = $ftpmode
+    FtpSecure = $ftpsecure
+    Protocol = $protocol
     HostName = $hostname
     UserName = $user
-    Password = $password
-    #SshHostKeyFingerprint = "ssh-rsa 2048 xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx"
 }
- 
+
+if($password -and !$ssh)
+{ $sessionOptions.Password = $password }
+elseif($password -and $ssh)
+{
+    $sessionOptions.SshHostKeyFingerprint = $ssh 
+    $sessionOptions.Password = $password
+}
+else
+{
+    Write-Host "No password or SSH key specified!"
+    Exit 8
+}
+$sessionOptions
+Exit 
+
 $session = New-Object WinSCP.Session
- 
 if($option -eq "upload")
 {
     try
@@ -40,12 +74,13 @@ if($option -eq "upload")
 
         # Upload files
         $transferOptions = New-Object WinSCP.TransferOptions
-        #$transferOptions.TransferMode = [WinSCP.TransferMode]::Binary
-        $transferResult = $session.PutFiles($localPath,($remotePath + $filename), $False, $transferOptions)
+        $transferOptions.TransferMode = $transferMode
+
+        $transferResult = $session.PutFiles(($localPath + $filename),$remotePath, $False, $transferOptions)
     
         # Throw on any error
         $transferResult.Check()
-        Write-Host $session.Output
+        $session.Output
     
         # Print results
         foreach ($transfer in $transferResult.Transfers)
@@ -72,11 +107,11 @@ elseif($option -eq "download")
         $session.Open($sessionOptions)
  
         # Download the file and throw on any error
-        $sessionResult = $session.GetFiles(($remotePath + $fileName),($localPath + $fileName))
+        $sessionResult = $session.GetFiles(($remotePath + $fileName),$localPath)
         
         # Throw error if found
         $sessionResult.Check()
-        Write-Host $session.Output
+        $session.Output
     }
     catch [Exception]
     {
@@ -89,8 +124,32 @@ elseif($option -eq "download")
         $session.Dispose()
     }    
 }
+elseif($option -eq "list")
+{
+    try
+    {
+        # Connect
+        $session.Open($sessionOptions)
+ 
+        # Download the file and throw on any error
+        $sessionResult = $session.ListDirectory($remotePath)
+        
+        # Throw error if found
+        $session.Output
+    }
+    catch [Exception]
+    {
+        Write-Host $_.Exception.Message
+        Exit 7
+    }
+    finally
+    {
+        # Disconnect, clean up
+        $session.Dispose()
+    }  
+}
 else 
 {
-    Write-Host "Option not specified, must be 'upload' or 'download'"
+    Write-Host "Option not specified, must be 'upload/download/list'"
     Exit 8
 }
