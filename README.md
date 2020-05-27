@@ -18,11 +18,16 @@ This script contains several parameters:<br>
 * <b>user</b> - username used for authenticating to the ftp site <br>
 * <b>password</b> - password used for authentication to the ftp site (recommend OpCon encrypted global property) <br>
 * <b>filename</b> - name of the file you are trying to upload/download (supports wildcards) <br>
+* <b>ftpmode</b> - ftp mode, values can be "passive" (default) or "active"
+* <b>ftpsecure</b> - ftps mode, values can be "none" (default), "implicit" and "explicit"
+* <b>protocol</b> - values are "sftp" (default),"scp", "ftp", "webdav", and "s3"
+* <b>transferMode</b> - values are "binary" (default), "ascii", and "automatic"
+* <b>ssh</b> - SSH fingerprint to use for the site
 * <b>option</b> - upload or download <br>
   
 Execution example: <br>
 ```
-powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -winscpPath "C:\Program Files (x86)\WinSCP\WinSCPnet.dll" -localPath "C:\\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "encrypted" -option "download"
+powershell.exe -ExecutionPolicy Bypass -File myFTP.ps1 -winscpPath "C:\Program Files (x86)\WinSCP\WinSCPnet.dll" -localPath "C:\\" -remotePath "/somedirectory" -filename "files*.txt" -hostname "someftp.com" -user "xman" -password "<encrypted>" -option "download"
 ```
 # Disclaimer
 No Support and No Warranty are provided by SMA Technologies for this project and related material. The use of this project's files is on your own risk.
