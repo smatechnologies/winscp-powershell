@@ -1,9 +1,9 @@
 # WinSCP
 This repo contains an example of running the <a href url="https://winscp.net/eng/index.php">WINSCP</a> ftp program from a PowerShell script.
 
-The intent was to keep this version as generic as possible so it could be used for as many different sites as possible.  If you are running this from OpCon it should fail (with an Exit Code of 1) if there are any issues.  Any other pertinant logging will be in the job output.
+The intent was to keep this version as generic as possible so it could be used for as many different sites as possible.  If you are running this from OpCon it will fail if there are any issues.  Any other pertinant logging will be in the job output.
 
-*The current iteration only supports downloading of files.  It will be updated in the future with more functionality.
+*Will look into adding pgp capabilities in future versions.
 
 # Prerequisites
 * WinSCP 5.15.9
